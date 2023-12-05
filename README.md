@@ -60,6 +60,7 @@
 ![](https://github.com/JPedroUNIVESP/ProjetoInterdisciplinar2-IFSP/blob/main/img/AWS1.jpg)
 
 </div>
+
 ----
 
 ### Detalhe do Glue Job
