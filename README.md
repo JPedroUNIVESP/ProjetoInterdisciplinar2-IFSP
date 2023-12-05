@@ -43,6 +43,16 @@
 ----
 ### Detalhe do Glue Job
 ![](https://github.com/JPedroUNIVESP/ProjetoInterdisciplinar2-IFSP/blob/main/img/Glue-Job.jpg)
+_Pré-processamento de Dados com Visual ETL_
+
+Utilizamos o Visual ETL para realizar o pré-processamento dos dados. Inicialmente, adicionamos um nó para acessar o bucket que contém os dados de entrada.
+
+Em seguida, implementamos um nó de transformação para eliminar linhas duplicadas. Posteriormente, paralelizamos dois nós: um para filtrar dados e gerar a base de vendas, e outro para criar a base de aluguel.
+
+Ao finalizar o processamento, os dois arquivos .csv resultantes são salvos no mesmo bucket, mas em pastas distintas.
+
+O script gerado está disponível neste [link](https://github.com/JPedroUNIVESP/ProjetoInterdisciplinar2-IFSP/blob/main/Glue-Jobs/glue-job.py)
+
 ---
 ### Queries
 * As consultas se encontram nesta [pasta](https://github.com/JPedroUNIVESP/ProjetoInterdisciplinar2-IFSP/tree/main/Queries-SQL)
