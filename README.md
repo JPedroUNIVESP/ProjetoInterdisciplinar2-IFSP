@@ -24,6 +24,26 @@
 
 * Glue-Jobs: esta pasta contém o script utilizado no Glue Job para pré processamento.
 
+---
+### Análise Exploratória
+*
+*
+*
+---
+### Análise dos Modelos
+*
+*
+*
+---
 
 ### Diagrama da Arquitetura de dados:
 ![](https://github.com/JPedroUNIVESP/ProjetoInterdisciplinar2-IFSP/blob/main/img/AWS1.jpg)
+
+### Detalhe do Glue Job
+![](https://github.com/JPedroUNIVESP/ProjetoInterdisciplinar2-IFSP/blob/main/img/Glue-Job.jpg)
+---
+
+### Conclusão
+*
+*
+*
