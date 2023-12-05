@@ -26,4 +26,4 @@
 
 
 ### Diagrama da Arquitetura de dados:
-*
+![](https://github.com/JPedroUNIVESP/ProjetoInterdisciplinar2-IFSP/blob/main/img/AWS1.jpg)
