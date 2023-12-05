@@ -28,9 +28,22 @@
 
 ---
 ### Análise Exploratória
-*
-*
-*
+##### A análise exploratória dos dados revelou o seguinte:
+* A maioria dos imóveis que se encontram na região Oeste e Sul, possui uma média de preços, tanto aluguel quanto venda, superior as demais regiões;
+* Os valores de condominio nas regiões Oeste e Sul, são maiores em relação as demais regiões. O mesmo comportamento visto no preço dos imóveis. Isso era de se esperar: imóveis mais caros, estão em melhores localizações e possuem maior "infraestrutura", aumentando assim seu custo final;
+* Há uma relação direta entre o tamanho do imóvel e seu preço. Imóveis maiores, custam mais caro. O que já era esperado;
+* A média nas regiões centro, leste e norte estão bem próximas de 2 banheiros, mas na zona Oeste e Sul, a média está mais próximo de 3. Como a média de quartos é maior nessa região, é de se esperar que o número de banheiros também seja para comportar os moradores;
+* As regiões Centro, Leste e norte, a maioria dos imóveis não possui suites;
+* Em imóveis maiores, com mais quartos, o número de moradores tende a ser maior, logo é de se esperar a necessidade de mais vagas de estacionamento para imóveis maiores. Vemos que as regiões Oeste e Sul, por possuirem imóveis maiores, também tem uma oferta maior de imóveis com mais vagas, como esperado.
+* Podemos observar que mesmo em regiões mais caras, a maioria dos imóveis não possui elevador. Essa informação surpreendeu. É de se esperar que em imóveis mais caros, por se tratar de apartamentos, deva ter elevador. Uma suposição para essa ausência de elevadores é uma quantidade pequena de andares no imóvel (inferior a 4 andares), o que explicaria esse comportamento;
+* Em todas as regiões vemos que mais de 77% delas não está mobiliada;
+* Notamos que para as regiões em que os preços dos aluguéis e venda são mais altos (Zona Oeste e Sul), o percentual de imóveis que possuem piscina são maiores que os que não possuem. O destaque foi para a região norte que possui mais de 70% das casas a venda com piscina;
+* Na base, a grande maioria dos imóveis não são novos. Pode ser que essa informação não seja interessante para o modelo visto que há concentração em um valor.
+
+
+
+
+
 ---
 ### Análise dos Modelos
 *
