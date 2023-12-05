@@ -55,10 +55,16 @@
 ---
 
 ### Diagrama da Arquitetura de dados:
+<div align="center">
 ![](https://github.com/JPedroUNIVESP/ProjetoInterdisciplinar2-IFSP/blob/main/img/AWS1.jpg)
+</div>
 ----
 ### Detalhe do Glue Job
+<div align="center">
+
 ![](https://github.com/JPedroUNIVESP/ProjetoInterdisciplinar2-IFSP/blob/main/img/Glue-Job.jpg)
+</div>
+
 _Pré-processamento de Dados com Visual ETL_
 
 Utilizamos o Visual ETL para realizar o pré-processamento dos dados. Inicialmente, adicionamos um nó para acessar o bucket que contém os dados de entrada.
