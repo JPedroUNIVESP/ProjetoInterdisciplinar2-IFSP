@@ -51,7 +51,9 @@
 
 </div>
 
-*
+* O modelo de regressão linear foi o que apresentou os maiores erros nas bases de aluguel e venda. Tal comportamento pode ser devido a simplicidade do modelo e pelo fato de algumas propriedades não terem necessariamente uma relação linear e de não termos aplicado nenhum tipo de regularização. Já quando partimos para o Boosting e o LGBM os erros foram menores. O LGBM se mostrou mais estável em relação as diferenças de erros entre as bases de treino e teste. Como os erros foram na mesma ordem de grandeza, não consideramos que houve overfit ou underfit.
+
+
 ---
 
 ### Diagrama da Arquitetura de dados:
