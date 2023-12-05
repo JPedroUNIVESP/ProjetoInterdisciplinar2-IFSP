@@ -40,14 +40,11 @@
 * Notamos que para as regiões em que os preços dos aluguéis e venda são mais altos (Zona Oeste e Sul), o percentual de imóveis que possuem piscina são maiores que os que não possuem. O destaque foi para a região norte que possui mais de 70% das casas a venda com piscina;
 * Na base, a grande maioria dos imóveis não são novos. Pode ser que essa informação não seja interessante para o modelo visto que há concentração em um valor.
 
-
-
-
-
 ---
 ### Análise dos Modelos
-*
-*
+* Optou-se por separar a base entre aluguel e venda, visto que o valor a ser previsto (preço) variava muito entre essas categorias;
+* Foram treinados 6 modelos: Regressão Linear, XGBoost e LightGBM. Abaixo é mostrado a performance do treino e na validação de cada modelo:
+![](https://github.com/JPedroUNIVESP/ProjetoInterdisciplinar2-IFSP/blob/main/img/metricas.jpg)
 *
 ---
 
