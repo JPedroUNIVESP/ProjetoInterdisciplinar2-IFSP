@@ -45,8 +45,11 @@
 * Optou-se por separar a base entre aluguel e venda, visto que o valor a ser previsto (preço) variava muito entre essas categorias;
 * Foram treinados 6 modelos: Regressão Linear, XGBoost e LightGBM. Abaixo é mostrado a performance do treino e na validação de cada modelo:
 
+<div align="center">
 
 ![](https://github.com/JPedroUNIVESP/ProjetoInterdisciplinar2-IFSP/blob/main/img/metricas.jpg)
+
+</div>
 
 *
 ---
