@@ -18,11 +18,13 @@
 * O objetivo do trabalho é prever o preço das propriedades tanto para venda como para aluguel.
 ---
 ### Estrutura das pastas
-* .ipynb_checkpoints: esta pasta contém o código utilizado para avalidar 3 modelos: regressão linear, xgboost e lgbm;
+* [.ipynb_checkpoints](https://github.com/JPedroUNIVESP/ProjetoInterdisciplinar2-IFSP/tree/main/.ipynb_checkpoints): esta pasta contém o código utilizado para avalidar 3 modelos: regressão linear, xgboost e lgbm;
 
-* pickles: esta pasta contém os dois arquivos .pickles para os modelos escolhidos para previsão de preço de aluguel e de venda;
+* [pickles](https://github.com/JPedroUNIVESP/ProjetoInterdisciplinar2-IFSP/tree/main/pickles): esta pasta contém os dois arquivos .pickles para os modelos escolhidos para previsão de preço de aluguel e de venda;
 
-* Glue-Jobs: esta pasta contém o script utilizado no Glue Job para pré processamento.
+* [Glue-Jobs](https://github.com/JPedroUNIVESP/ProjetoInterdisciplinar2-IFSP/tree/main/Glue-Jobs): esta pasta contém o script utilizado no Glue Job para pré processamento;
+
+* [Queries-SQL](https://github.com/JPedroUNIVESP/ProjetoInterdisciplinar2-IFSP/tree/main/Queries-SQL): esta pasta contém todas as queries SQLs utilizadas no trabalho.
 
 ---
 ### Análise Exploratória
