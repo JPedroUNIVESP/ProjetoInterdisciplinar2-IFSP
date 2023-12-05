@@ -38,10 +38,12 @@
 
 ### Diagrama da Arquitetura de dados:
 ![](https://github.com/JPedroUNIVESP/ProjetoInterdisciplinar2-IFSP/blob/main/img/AWS1.jpg)
-
+----
 ### Detalhe do Glue Job
 ![](https://github.com/JPedroUNIVESP/ProjetoInterdisciplinar2-IFSP/blob/main/img/Glue-Job.jpg)
 ---
+### Queries
+* As consultas se encontram nesta [pasta](https://github.com/JPedroUNIVESP/ProjetoInterdisciplinar2-IFSP/blob/main/img/AWS1.jpg)
 
 ### Conclusão
 *
