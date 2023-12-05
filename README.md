@@ -61,7 +61,9 @@
 
 </div>
 ----
+
 ### Detalhe do Glue Job
+
 <div align="center">
 
 ![](https://github.com/JPedroUNIVESP/ProjetoInterdisciplinar2-IFSP/blob/main/img/Glue-Job.jpg)
