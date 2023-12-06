@@ -111,6 +111,6 @@ ___
 * As consultas se encontram nesta [pasta](https://github.com/JPedroUNIVESP/ProjetoInterdisciplinar2-IFSP/tree/main/Queries-SQL)
 
 ### Conclusão
-*
-*
-*
+* O LightGBM se mostrou como modelo mais eficiente em prever o preço dos imóveis em aluguel e venda, não apresentando overfit ou underfit e possuiu performance melhor que a Regressão Linear e o  XGBoost;
+* O ambiente Cloud Amazon AWS se mostrou eficiente e escalável em armazenar dados e realizar ETL. Também se mostrou eficiente em oferecer um ambiente para treinamento e realização de deploy de modelos.
+
