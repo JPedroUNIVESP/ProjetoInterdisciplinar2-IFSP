@@ -123,10 +123,11 @@ Utilizamos o **Visual ETL** para realizar o pré-processamento dos dados.
 
 Inicialmente, adicionamos um nó para acessar o bucket que contém os dados de entrada (_input-propriedades/raw/_).
 
-Em seguida, implementamos um nó de transformação via SQL query no qual criou uma coluna (district_zone) atráves de um mapeamento de _bairro -> região__. Para eliminar linhas duplicadas, adicionamos na sequência outro nó de transformação que capturou apenas as linhas únicas da base.
-Posteriormente, paralelizamos dois nós: um para salvar a base de input com a adição da coluna district_zone, e outro para a retirada de colunas que não usaremos nos modelos.
+Em seguida, implementamos um nó de transformação via SQL query no qual criou uma coluna (district_zone) atráves de um mapeamento de _bairro -> região_. 
+Para eliminar linhas duplicadas, adicionamos na sequência outro nó de transformação que capturou apenas as linhas únicas da base.
+Posteriormente, paralelizamos dois nós: um para salvar a base de input com a adição da coluna district_zone em _input-propriedades/raw/full/_ , e outro para a retirada de colunas que não usaremos nos modelos.
 Com outro nó de transformação filtramos os dados e geramos as bases de vendas e de aluguel.
-Por fim, salvamos os arquivos _.csv_ gerados em _input-propriedades/raw/venda_ e _input-propriedades/raw/aluguel_, respectivamente.
+Por fim, salvamos os arquivos _.csv_ gerados em _input-propriedades/raw/venda/_ e _input-propriedades/raw/aluguel/_, respectivamente.
 
 O script gerado está disponível neste [link](https://github.com/JPedroUNIVESP/ProjetoInterdisciplinar2-IFSP/blob/main/Glue-Jobs/glue-job.py)
 <div align="center">
@@ -143,6 +144,8 @@ Foram criados crawlers para analisarem os dados nos buckets de input e output, e
 
 ![](https://github.com/JPedroUNIVESP/ProjetoInterdisciplinar2-IFSP/blob/main/img/Glue-Tables.png)
 </div>
+
+Após a rodada de cada um, conseguimos visualizar os dados via AWS Athena.
 
 ---
 
