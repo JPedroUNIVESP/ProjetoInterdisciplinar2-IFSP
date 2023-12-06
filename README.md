@@ -85,6 +85,40 @@ O script gerado está disponível neste [link](https://github.com/JPedroUNIVESP/
 ---
 
 #### ETL
+
+Para darmos inicio ao processamento dos dados, criamos 2 buckets: um para input contendo 2 pastas e outro para output.
+<div align="center">
+
+![](https://github.com/JPedroUNIVESP/ProjetoInterdisciplinar2-IFSP/blob/main/img/Buckets.png)
+</div>
+
+###### _input-propriedades_
+* __raw__: Nesta pasta iremos inserir apenas os dados brutos, ou seja, a base crua vinda do kaggle.
+
+<div align="center">
+
+![](https://github.com/JPedroUNIVESP/ProjetoInterdisciplinar2-IFSP/blob/main/img/input-propriedades-raw.png)
+</div>
+
+* __processed__: Nesta pasta teremos apenas dados processados. Dentro da mesma, criamos 3 pastas para melhor organização:
+
+<div align="center">
+
+![](https://github.com/JPedroUNIVESP/ProjetoInterdisciplinar2-IFSP/blob/main/img/input-propriedades-processed.png)
+</div>
+    * __aluguel__: Nesta pasta serão inseridos os arquivos .csv contendo todos os dados de imóveis que estão para locação.
+Esses dados são populados via Job.
+    * __venda__: Nesta pasta serão inseridos os arquivos .csv contendo todos os dados de imóveis que estão para venda.
+Esses dados são populados via Job.
+
+###### _output-modelo_
+Esta pasta contém os 2 arquivos pickle (.pkl), gerados via SageMaker, após o processamento dos modelos.
+
+<div align="center">
+
+![](https://github.com/JPedroUNIVESP/ProjetoInterdisciplinar2-IFSP/blob/main/img/output-modelo.png)
+</div>
+
 <div align="center">
 
 ![](https://github.com/JPedroUNIVESP/ProjetoInterdisciplinar2-IFSP/blob/main/img/Glue-Tables.png)
