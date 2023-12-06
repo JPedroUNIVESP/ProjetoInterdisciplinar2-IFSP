@@ -63,6 +63,10 @@
 
 </div>
 
+### Verificação de permissionamento IAM:
+Antes de realizar o ETL checamos todos os serviços disponíveis para o role _LabRole_, e
+verificamos que os serviços que utilizariamos estavam liberados: _S3_, _Athena_, _SageMaker_, _EC2_, _Glue_.
+
 ----
 ### Processo de ETL com AWS Glue:
 
