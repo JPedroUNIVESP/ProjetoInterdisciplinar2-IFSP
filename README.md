@@ -65,11 +65,11 @@
 
 ----
 
-### Detalhe do Glue Job
+#### Detalhe do Glue Job
 
 <div align="center">
 
-![](https://github.com/JPedroUNIVESP/ProjetoInterdisciplinar2-IFSP/blob/main/img/Glue-Job.jpg)
+![](https://github.com/JPedroUNIVESP/ProjetoInterdisciplinar2-IFSP/blob/main/img/Glue-Job.png)
 </div>
 
 _Pré-processamento de Dados com Visual ETL_
@@ -83,6 +83,30 @@ Ao finalizar o processamento, os dois arquivos .csv resultantes são salvos no m
 O script gerado está disponível neste [link](https://github.com/JPedroUNIVESP/ProjetoInterdisciplinar2-IFSP/blob/main/Glue-Jobs/glue-job.py)
 
 ---
+
+#### ETL
+<div align="center">
+
+![](https://github.com/JPedroUNIVESP/ProjetoInterdisciplinar2-IFSP/blob/main/img/Glue-Tables.png)
+</div>
+
+<div align="center">
+
+![](https://github.com/JPedroUNIVESP/ProjetoInterdisciplinar2-IFSP/blob/main/img/Job-Input-Dados.png)
+</div>
+
+<div align="center">
+
+![](https://github.com/JPedroUNIVESP/ProjetoInterdisciplinar2-IFSP/blob/main/img/Schema-Aluguel.png)
+</div>
+
+<div align="center">
+
+![](https://github.com/JPedroUNIVESP/ProjetoInterdisciplinar2-IFSP/blob/main/img/Schema-Venda.png)
+</div>
+
+
+___
 ### Queries
 * As consultas se encontram nesta [pasta](https://github.com/JPedroUNIVESP/ProjetoInterdisciplinar2-IFSP/tree/main/Queries-SQL)
 
