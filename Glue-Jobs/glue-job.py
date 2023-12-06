@@ -81,46 +81,62 @@ DropDuplicates_node1701736027619 = DynamicFrame.fromDF(
     "DropDuplicates_node1701736027619",
 )
 
+# Script generated for node Drop Fields
+DropFields_node1701875258244 = DropFields.apply(
+    frame=DropDuplicates_node1701736027619,
+    paths=["longitude", "latitude", "district"],
+    transformation_ctx="DropFields_node1701875258244",
+)
+
 # Script generated for node base_venda
 base_venda_node1701734649497 = Filter.apply(
-    frame=DropDuplicates_node1701736027619,
+    frame=DropFields_node1701875258244,
     f=lambda row: (bool(re.match("sale", row["negotiation_type"]))),
     transformation_ctx="base_venda_node1701734649497",
 )
 
 # Script generated for node base_aluguel
 base_aluguel_node1701735835532 = Filter.apply(
-    frame=DropDuplicates_node1701736027619,
+    frame=DropFields_node1701875258244,
     f=lambda row: (bool(re.match("rent", row["negotiation_type"]))),
     transformation_ctx="base_aluguel_node1701735835532",
 )
 
-# Script generated for node Amazon S3
-AmazonS3_node1701734674262 = glueContext.getSink(
-    path="s3://input-propriedades/processed/venda/",
+# Script generated for node base_full
+base_full_node1701875168173 = glueContext.write_dynamic_frame.from_options(
+    frame=DropDuplicates_node1701736027619,
     connection_type="s3",
-    updateBehavior="LOG",
-    partitionKeys=[],
-    enableUpdateCatalog=True,
+    format="csv",
+    connection_options={
+        "path": "s3://input-propriedades/processed/full/",
+        "compression": "snappy",
+        "partitionKeys": [],
+    },
+    transformation_ctx="base_full_node1701875168173",
+)
+
+# Script generated for node Amazon S3
+AmazonS3_node1701734674262 = glueContext.write_dynamic_frame.from_options(
+    frame=base_venda_node1701734649497,
+    connection_type="s3",
+    format="csv",
+    connection_options={
+        "path": "s3://input-propriedades/processed/venda/",
+        "partitionKeys": [],
+    },
     transformation_ctx="AmazonS3_node1701734674262",
 )
-AmazonS3_node1701734674262.setCatalogInfo(
-    catalogDatabase="propriedades", catalogTableName="venda"
-)
-AmazonS3_node1701734674262.setFormat("csv")
-AmazonS3_node1701734674262.writeFrame(base_venda_node1701734649497)
+
 # Script generated for node Amazon S3
-AmazonS3_node1701735860777 = glueContext.getSink(
-    path="s3://input-propriedades/processed/aluguel/",
+AmazonS3_node1701735860777 = glueContext.write_dynamic_frame.from_options(
+    frame=base_aluguel_node1701735835532,
     connection_type="s3",
-    updateBehavior="LOG",
-    partitionKeys=[],
-    enableUpdateCatalog=True,
+    format="csv",
+    connection_options={
+        "path": "s3://input-propriedades/processed/aluguel/",
+        "partitionKeys": [],
+    },
     transformation_ctx="AmazonS3_node1701735860777",
 )
-AmazonS3_node1701735860777.setCatalogInfo(
-    catalogDatabase="propriedades", catalogTableName="aluguel"
-)
-AmazonS3_node1701735860777.setFormat("csv")
-AmazonS3_node1701735860777.writeFrame(base_aluguel_node1701735835532)
+
 job.commit()
