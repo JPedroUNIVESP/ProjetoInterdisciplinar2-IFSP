@@ -10,13 +10,14 @@
 
 ---
 
-
 ### Base de Dados
 * A base de dados utilizada neste projeto se encontra no seguinte link do [Kaggle](https://www.kaggle.com/datasets/argonalyst/sao-paulo-real-estate-sale-rent-april-2019)
 <!-- O dataset se refere a 13 mil propriedades à venda ou para alugar na cidade de São Paulo, Brasil.-->
 * O conjunto de dados inclui aproximadamente 13.000 apartamentos disponíveis para venda e locação na cidade de São Paulo. As informações foram coletadas de diversas fontes, com destaque para sites de classificados de imóveis. Sendo uma versão menor e anonimizada de um conjunto de dados que foram utilizados na startup OpenImob.
 * O objetivo do trabalho é prever o preço das propriedades tanto para venda como para aluguel.
+
 ---
+
 ### Estrutura das pastas
 * [.ipynb_checkpoints](https://github.com/JPedroUNIVESP/ProjetoInterdisciplinar2-IFSP/tree/main/.ipynb_checkpoints): esta pasta contém o código utilizado para avalidar 3 modelos: __regressão linear__, __xgboost__ e __lgbm__;
 
@@ -26,7 +27,10 @@
 
 * [Queries-SQL](https://github.com/JPedroUNIVESP/ProjetoInterdisciplinar2-IFSP/tree/main/Queries-SQL): esta pasta contém todas as queries SQLs utilizadas no trabalho.
 
+* [img](https://github.com/JPedroUNIVESP/ProjetoInterdisciplinar2-IFSP/tree/main/img): esta pasta contém todas as imagens utilizadas no trabalho.
+
 ---
+
 ### Análise Exploratória
 ##### A análise exploratória dos dados revelou o seguinte:
 * A maioria dos imóveis que se encontram na região Oeste e Sul, possui uma média de preços, tanto aluguel quanto venda, superior as demais regiões;
@@ -41,6 +45,7 @@
 * Na base, a grande maioria dos imóveis não são novos. Pode ser que essa informação não seja interessante para o modelo visto que há concentração em um valor.
 
 ---
+
 ### Análise dos Modelos
 * Optou-se por separar a base entre aluguel e venda, visto que o valor a ser previsto (preço) variava muito entre essas categorias;
 * Foram treinados 6 modelos: Regressão Linear, XGBoost e LightGBM. Abaixo é mostrado a performance do treino e na validação de cada modelo:
@@ -52,7 +57,6 @@
 </div>
 
 * O modelo de regressão linear foi o que apresentou os maiores erros nas bases de aluguel e venda. Tal comportamento pode ser devido a simplicidade do modelo e pelo fato de algumas propriedades não terem necessariamente uma relação linear e de não termos aplicado nenhum tipo de regularização. Já quando partimos para o Boosting e o LGBM os erros foram menores. O LGBM se mostrou mais estável em relação as diferenças de erros entre as bases de treino e teste. Como os erros foram na mesma ordem de grandeza, não consideramos que houve overfit ou underfit.
-
 
 ---
 
@@ -180,8 +184,8 @@ Após a criação das tabelas, editamos o schema de cada uma para ajustar o nome
 ---
 #### 5. Validação de dados com Athena
 
-Uma vez que as tabelas foram criadas no Glue DataCatalog, utilizamos o Amazon Athena para executar consultas SQL diretamente nos dados processados (_aluguel, venda e full_).
-Essas consultas auxiliaram no pré-processamento dos dados e refinamento do JOB.
+Uma vez que as tabelas foram criadas no Glue DataCatalog, utilizamos o *Amazon Athena* para executar consultas SQL diretamente nos dados processados (_aluguel, venda e full_).
+Essas consultas auxiliaram no pré-processamento dos dados e refinamento do _Job_.
 
 ##### _Queries_
 * As consultas utilizadas se encontram nesta [pasta](https://github.com/JPedroUNIVESP/ProjetoInterdisciplinar2-IFSP/tree/main/Queries-SQL)
@@ -209,6 +213,5 @@ Ao final desse processo, geramos 2 arquivos no formato .pkl contendo as informa�
 ---
 
 #### 7. Conclusão
-* O LightGBM se mostrou como modelo mais eficiente em prever o preço dos imóveis em aluguel e venda, não apresentando overfit ou underfit e possuiu performance melhor que a Regressão Linear e o  XGBoost;
+* O LightGBM se mostrou como modelo mais eficiente em prever o preço dos imóveis em aluguel e venda, não apresentando _overfit_ ou _underfit_ e possuiu performance melhor que a Regressão Linear e o XGBoost;
 * O ambiente Cloud Amazon AWS se mostrou eficiente e escalável em armazenar dados e realizar ETL. Também se mostrou eficiente em oferecer um ambiente para treinamento e realização de deploy de modelos.
-
