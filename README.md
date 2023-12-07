@@ -63,37 +63,98 @@
 
 </div>
 
-----
+### Verificação de permissionamento IAM:
+Antes de realizar o ETL checamos todos os serviços disponíveis para o role _LabRole_, e
+verificamos que os serviços que utilizariamos estavam liberados: _S3_, _Athena_, _SageMaker_, _EC2_, _Glue_.
 
-#### Detalhe do Glue Job
+----
+### Processo de ETL com AWS Glue:
+
+#### 1. Criação de Bucket S3:
+Primeiramente, foram criados dois buckets no Amazon S3, um para armazenar os dados de entrada (input) e outro para a saida do modelo (output).
 
 <div align="center">
 
-![](https://github.com/JPedroUNIVESP/ProjetoInterdisciplinar2-IFSP/blob/main/img/Glue-Job.png)
+![](https://github.com/JPedroUNIVESP/ProjetoInterdisciplinar2-IFSP/blob/main/img/Buckets.png)
 </div>
 
-_Pré-processamento de Dados com Visual ETL_
+###### _input-propriedades_
+Dentro do bucket de input, _**input-propriedades**_, criados 2 pastas: _raw_ e _processed_
 
-Utilizamos o Visual ETL para realizar o pré-processamento dos dados. Inicialmente, adicionamos um nó para acessar o bucket que contém os dados de entrada.
+<div align="center">
 
-Em seguida, implementamos um nó de transformação para eliminar linhas duplicadas. Posteriormente, paralelizamos dois nós: um para filtrar dados e gerar a base de vendas, e outro para criar a base de aluguel.
+![](https://github.com/JPedroUNIVESP/ProjetoInterdisciplinar2-IFSP/blob/main/img/input-propriedades.png)
+</div>
 
-Ao finalizar o processamento, os dois arquivos .csv resultantes são salvos no mesmo bucket, mas em pastas distintas.
+* __raw__: Nesta pasta inserimos apenas os dados brutos, ou seja, a base crua extraída do [Kaggle](https://www.kaggle.com/datasets/argonalyst/sao-paulo-real-estate-sale-rent-april-2019).
 
-O script gerado está disponível neste [link](https://github.com/JPedroUNIVESP/ProjetoInterdisciplinar2-IFSP/blob/main/Glue-Jobs/glue-job.py)
+<div align="center">
+
+![](https://github.com/JPedroUNIVESP/ProjetoInterdisciplinar2-IFSP/blob/main/img/input-propriedades-raw.png)
+</div>
+
+* __processed__: Nesta inserimos os dados processados, e para melhor organização separamos em 3 pastas:
+
+    * __aluguel__: Arquivos _.csv_ contendo todos os dados de imóveis que estão para locação. Esses dados foram populados via Job.
+    
+    * __venda__: Da mesma forma que a base de aluguel, temos os arquivos _.csv_ contendo todos os dados de imóveis que estão para venda, e foram populados via Job.
+
+    * __full__: Base intermediária contendo todos os dados de input, sem nenhum filtro, com um mapeamento aplicado de regiões. Utilizados esse mapeamento para clusterizar imóveis de acordo com a zona que o mesmo pertence, dentro da cidade de são paulo, ao invés de utilizar a informação de distrito.
+
+<div align="center">
+
+  ![](https://github.com/JPedroUNIVESP/ProjetoInterdisciplinar2-IFSP/blob/main/img/input-propriedades-processed.png)
+</div>
+
+###### _output-modelo_
+Neste bucket de output inserimos os pickles gerados via SageMaker, após o processamento dos modelos.
+
+<div align="center">
+
+![](https://github.com/JPedroUNIVESP/ProjetoInterdisciplinar2-IFSP/blob/main/img/output-modelo.png)
+</div>
 
 ---
 
-#### ETL
-<div align="center">
+#### 2. Detalhamento do Glue Job
 
-![](https://github.com/JPedroUNIVESP/ProjetoInterdisciplinar2-IFSP/blob/main/img/Glue-Tables.png)
-</div>
+Utilizamos o **Visual ETL** para realizar o pré-processamento dos dados. 
 
 <div align="center">
 
 ![](https://github.com/JPedroUNIVESP/ProjetoInterdisciplinar2-IFSP/blob/main/img/Job-Input-Dados.png)
 </div>
+
+Inicialmente, adicionamos um nó para acessar o bucket que contém os dados de entrada (_input-propriedades/raw/_).
+
+Em seguida, implementamos um nó de transformação via SQL query no qual criou uma coluna (district_zone) atráves de um mapeamento de _bairro -> região_. 
+Para eliminar linhas duplicadas, adicionamos na sequência outro nó de transformação que capturou apenas as linhas únicas da base.
+Posteriormente, paralelizamos dois nós: um para salvar a base de input com a adição da coluna district_zone em _input-propriedades/raw/full/_ , e outro para a retirada de colunas que não usaremos nos modelos.
+Com outro nó de transformação filtramos os dados e geramos as bases de vendas e de aluguel.
+Por fim, salvamos os arquivos _.csv_ gerados em _input-propriedades/raw/venda/_ e _input-propriedades/raw/aluguel/_, respectivamente.
+
+O script gerado está disponível neste [link](https://github.com/JPedroUNIVESP/ProjetoInterdisciplinar2-IFSP/blob/main/Glue-Jobs/glue-job.py)
+<div align="center">
+
+![](https://github.com/JPedroUNIVESP/ProjetoInterdisciplinar2-IFSP/blob/main/img/Glue-Job.png)
+</div>
+
+---
+
+#### 3. Configuração do Crawler Glue para criação de tabelas
+
+Foram criados crawlers para analisarem os dados nos buckets de input e output, e criar metadados e tabelas no AWS Glue DataCatalog.
+<div align="center">
+
+![](https://github.com/JPedroUNIVESP/ProjetoInterdisciplinar2-IFSP/blob/main/img/Glue-Tables.png)
+</div>
+
+Após a rodada de cada um, conseguimos visualizar os dados via AWS Athena.
+
+---
+
+#### 4. Refinamento do Glue DataCatalog
+Após a criação das tabelas, editamos o schema de cada uma para ajustar o nome e o tipo das colunas, além da adição do comentário com um breve descritivo de cada coluna.
 
 <div align="center">
 
@@ -105,12 +166,17 @@ O script gerado está disponível neste [link](https://github.com/JPedroUNIVESP/
 ![](https://github.com/JPedroUNIVESP/ProjetoInterdisciplinar2-IFSP/blob/main/img/Schema-Venda.png)
 </div>
 
+---
+#### 5. Validação de dados com Athena
 
-___
-### Queries
-* As consultas se encontram nesta [pasta](https://github.com/JPedroUNIVESP/ProjetoInterdisciplinar2-IFSP/tree/main/Queries-SQL)
+Uma vez que as tabelas foram criadas no Glue DataCatalog, utilizamos o Amazon Athena para executar consultas SQL diretamente nos dados processados (_aluguel, venda e full_).
+Essas consultas auxiliaram no pré-processamento dos dados e refinamento do JOB.
 
-### Conclusão
+##### _Queries_
+* As consultas utilizadas se encontram nesta [pasta](https://github.com/JPedroUNIVESP/ProjetoInterdisciplinar2-IFSP/tree/main/Queries-SQL)
+
+
+#### 6. Conclusão
 * O LightGBM se mostrou como modelo mais eficiente em prever o preço dos imóveis em aluguel e venda, não apresentando overfit ou underfit e possuiu performance melhor que a Regressão Linear e o  XGBoost;
 * O ambiente Cloud Amazon AWS se mostrou eficiente e escalável em armazenar dados e realizar ETL. Também se mostrou eficiente em oferecer um ambiente para treinamento e realização de deploy de modelos.
 
