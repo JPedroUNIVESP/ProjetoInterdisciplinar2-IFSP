@@ -64,8 +64,19 @@
 </div>
 
 ### Verificação de permissionamento IAM:
-Antes de realizar o ETL checamos todos os serviços disponíveis para o role _LabRole_, e
+
+<div align="center">
+
+![](https://github.com/JPedroUNIVESP/ProjetoInterdisciplinar2-IFSP/blob/main/img/iam.png)
+</div>
+
+Antes de realizar o _ETL_ checamos todos os serviços disponíveis para o role _LabRole_, e
 verificamos que os serviços que utilizariamos estavam liberados: _S3_, _Athena_, _SageMaker_, _EC2_, _Glue_.
+
+<div align="center">
+
+![](https://github.com/JPedroUNIVESP/ProjetoInterdisciplinar2-IFSP/blob/main/img/LabRole.png)
+</div>
 
 ----
 ### Processo de ETL com AWS Glue:
@@ -176,7 +187,28 @@ Essas consultas auxiliaram no pré-processamento dos dados e refinamento do JOB.
 * As consultas utilizadas se encontram nesta [pasta](https://github.com/JPedroUNIVESP/ProjetoInterdisciplinar2-IFSP/tree/main/Queries-SQL)
 
 
-#### 6. Conclusão
+#### 6. SageMaker
+
+<div align="center">
+
+![](https://github.com/JPedroUNIVESP/ProjetoInterdisciplinar2-IFSP/blob/main/img/notebook_instance.png)
+</div>
+
+
+Utilizando o SageMaker, provisionamos uma instância EC2 (_ml.c5.xlarge_: 4 vCPUs e 8GB de memória) para executar um notebook que desenvolvemos 
+para treinar três modelos distintos: _Regressão Linear_, _Boosting_ e _LGBM_. 
+
+<div align="center">
+
+![](https://github.com/JPedroUNIVESP/ProjetoInterdisciplinar2-IFSP/blob/main/img/create_notebook_instance.png)
+</div>
+
+Ao final desse processo, geramos 2 arquivos no formato .pkl contendo as informações e parâmetros resultantes dos modelos selecionados.
+
+
+---
+
+#### 7. Conclusão
 * O LightGBM se mostrou como modelo mais eficiente em prever o preço dos imóveis em aluguel e venda, não apresentando overfit ou underfit e possuiu performance melhor que a Regressão Linear e o  XGBoost;
 * O ambiente Cloud Amazon AWS se mostrou eficiente e escalável em armazenar dados e realizar ETL. Também se mostrou eficiente em oferecer um ambiente para treinamento e realização de deploy de modelos.
 
